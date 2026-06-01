@@ -695,7 +695,8 @@ export default function JackWolfLanding() {
       {/* ── FUNDADOR ── */}
       <section className="section grid-bg">
         <div className="orb" style={{ width:500,height:500,background:"radial-gradient(circle,rgba(0,178,169,0.09) 0%,transparent 70%)",top:"20%",right:"0" }}/>
-        <SH label="Sobre o Fundador" title="Expertise construída no campo, com foco em resultado." />
+        <SH label="Sobre o Fundador" title="Expertise construída no campo, com foco em resultado." sub=""
+         />
         <div className="founder-flex" style={{ display:"flex", flexWrap:"wrap", gap:"4rem", alignItems:"center" }}>
           <div className="founder-photo">
             <img src="/jackson.png" alt="Jackson Oliveira"/>
