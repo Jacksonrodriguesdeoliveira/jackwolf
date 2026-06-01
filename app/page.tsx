@@ -332,7 +332,7 @@ const Icon = ({ name, size = 20 }: { name: string; size?: number }) => {
 };
 
 function useReveal() {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current; if (!el) return;
     const obs = new IntersectionObserver(([e]) => {
@@ -346,7 +346,7 @@ function useReveal() {
 
 function Counter({ target, duration = 2200 }) {
   const [val, setVal] = useState(0);
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const started = useRef(false);
   const isNeg = target.includes("-");
   const num = parseInt(target.replace(/\D/g,""));
