@@ -344,7 +344,13 @@ function useReveal() {
   return ref;
 }
 
-function Counter({ target, duration = 2200 }) {
+function Counter({
+  target,
+  duration = 2200,
+}: {
+  target: string;
+  duration?: number;
+}) {
   const [val, setVal] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const started = useRef(false);
