@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 
 const WHATSAPP      = "https://wa.me/5511982408744";
-const WHATSAPP_DIAG = "https://wa.me/5511982408744?text=Olá%2C%20gostaria%20de%20solicitar%20um%20diagnóstico%20gratuito.";
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycbyj-K5AkBw1ReUUcWS39p_caYkv_9egEA1B6pZ0Z0iXN8FH_O57Xrqtmje5u1NnL5D9-A/exec";
 const LINKEDIN      = "https://www.linkedin.com/in/jackson-rodrigues-oliveira";
 const EMAIL         = "mailto:contato@jackwolf.com.br";
 
@@ -476,19 +476,29 @@ const SH = ({ label, title, sub = undefined, center = false }: { label: string; 
 
 // ── Lead Form Modal ──────────────────────────────────────────────
 function LeadModal({ onClose }) {
-  const [form, setForm] = useState({ empresa:"", nome:"", celular:"", email:"", cargo:"" });
+  const [form, setForm] = useState<{empresa:string;nome:string;celular:string;email:string;cargo:string}>({ empresa:"", nome:"", celular:"", email:"", cargo:"" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
   const valid = form.empresa && form.nome && form.celular && form.email && form.cargo;
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!valid) return;
     setLoading(true);
-    // Envia para WhatsApp como mensagem formatada
-    await new Promise(r => setTimeout(r, 900));
+    try {
+      // Salva no Google Sheets
+      await fetch(SHEETS_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+    } catch (err) {
+      console.error("Sheets error:", err);
+    }
+    // Abre WhatsApp com resumo do lead
     const msg = encodeURIComponent(
       `Olá! Tenho interesse na Jack Wolf.\n\n` +
       `🏢 Empresa: ${form.empresa}\n` +
