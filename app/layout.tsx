@@ -14,9 +14,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jack Wolf | Inteligência Comercial",
+  title: "Jack Wolf | Plataforma SaaS de Trade Marketing e Inteligência Comercial",
   description:
-    "Plataforma SaaS para gestão comercial, distribuidores e equipes de campo",
+    "Plataforma SaaS para Trade Marketing, gestão de distribuidores, execução de campo e inteligência comercial.",
+  verification: {
+    google: "mJW6rYspyvc17dUkzi797hvLhgMJYkvXoOEzfmJ_JB8",
+  },
 };
 
 export default function RootLayout({
