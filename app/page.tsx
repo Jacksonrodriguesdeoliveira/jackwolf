@@ -463,7 +463,7 @@ function Counter({ target, duration = 2200 }) {
   return <span ref={ref} className="metric-val">{val > 0 ? "+" : ""}{val}%</span>;
 }
 
-const SH = ({ label, title, sub, center = false }) => {
+const SH = ({ label, title, sub = undefined, center = false }: { label: string; title: string; sub?: string; center?: boolean }) => {
   const ref = useReveal();
   return (
     <div ref={ref} className={`reveal sh-wrap${center ? " center" : ""}`}>
