@@ -245,7 +245,102 @@ const styles = `
     display:block;
   }
 
-  /* ══ MOBILE ══ */
+  /* ══ MODAL LEAD FORM ══ */
+  @keyframes modalIn {
+    from{opacity:0;transform:scale(0.95) translateY(16px)}
+    to{opacity:1;transform:scale(1) translateY(0)}
+  }
+  .modal-overlay{
+    position:fixed;inset:0;z-index:999;
+    background:rgba(7,10,14,0.85);
+    backdrop-filter:blur(8px);
+    display:flex;align-items:center;justify-content:center;
+    padding:1.5rem;
+  }
+  .modal-box{
+    background:var(--card);
+    border:1px solid var(--border-t);
+    border-radius:16px;
+    width:100%;max-width:520px;
+    padding:2.5rem;
+    position:relative;
+    animation:modalIn 0.3s cubic-bezier(0.23,1,0.32,1) forwards;
+    box-shadow:0 30px 80px rgba(0,0,0,0.6),0 0 60px rgba(0,178,169,0.08);
+  }
+  .modal-box::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--teal),transparent);
+    border-radius:16px 16px 0 0;
+  }
+  .modal-close{
+    position:absolute;top:1.25rem;right:1.25rem;
+    width:32px;height:32px;border-radius:8px;
+    background:rgba(255,255,255,0.05);border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;color:var(--muted);
+    transition:all 0.2s;font-size:1rem;line-height:1;
+  }
+  .modal-close:hover{background:rgba(255,255,255,0.1);color:var(--text);}
+  .modal-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.375rem;font-weight:800;letter-spacing:-0.03em;
+    color:var(--text);margin-bottom:0.375rem;
+  }
+  .modal-sub{font-size:0.875rem;color:var(--muted);margin-bottom:2rem;line-height:1.5;}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .form-group{display:flex;flex-direction:column;gap:0.375rem;}
+  .form-group.full{grid-column:1/-1;}
+  .form-label{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.75rem;font-weight:600;letter-spacing:0.04em;
+    color:var(--muted);text-transform:uppercase;
+  }
+  .form-input,.form-select{
+    background:var(--card2);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:0.75rem 1rem;
+    font-family:'Inter',sans-serif;
+    font-size:0.9rem;color:var(--text);
+    outline:none;width:100%;
+    transition:border-color 0.2s,box-shadow 0.2s;
+    -webkit-appearance:none;
+  }
+  .form-input::placeholder{color:rgba(154,164,178,0.5);}
+  .form-input:focus,.form-select:focus{
+    border-color:var(--border-t);
+    box-shadow:0 0 0 3px rgba(0,178,169,0.1);
+  }
+  .form-select{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239AA4B2' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 1rem center;
+    padding-right:2.5rem;cursor:pointer;
+  }
+  .form-select option{background:var(--card2);color:var(--text);}
+  .form-submit{
+    width:100%;margin-top:1.5rem;
+    background:var(--teal);color:#0B0F14;
+    padding:0.9rem;border-radius:9px;border:none;cursor:pointer;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;
+    transition:all 0.25s;display:flex;align-items:center;justify-content:center;gap:0.5rem;
+  }
+  .form-submit:hover{background:var(--teal-h);transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,178,169,0.35);}
+  .form-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+  .success-box{
+    text-align:center;padding:1rem 0;display:flex;flex-direction:column;align-items:center;gap:1rem;
+  }
+  .success-icon{
+    width:60px;height:60px;border-radius:50%;
+    background:var(--teal-dim);border:2px solid var(--border-t);
+    display:flex;align-items:center;justify-content:center;color:var(--teal);
+  }
+  .success-title{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:800;color:var(--text);}
+  .success-sub{font-size:0.875rem;color:var(--muted);line-height:1.6;max-width:340px;}
+  @media(max-width:520px){
+    .modal-box{padding:1.75rem 1.25rem;}
+    .form-grid{grid-template-columns:1fr;}
+    .form-group.full{grid-column:1;}
+  }
   @media(max-width:900px){
     .nav-links{display:none;}
     .nav-cta{display:none;}
@@ -297,7 +392,7 @@ const styles = `
   }
 `;
 
-const Icon = ({ name, size = 20 }: { name: string; size?: number }) => {
+const Icon = ({ name, size = 20 }) => {
   const icons = {
     store:      <><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></>,
     package:    <><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27,6.96 12,12.01 20.73,6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></>,
@@ -326,13 +421,13 @@ const Icon = ({ name, size = 20 }: { name: string; size?: number }) => {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
       stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      {icons[name as keyof typeof icons]}
+      {icons[name]}
     </svg>
   );
 };
 
 function useReveal() {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef(null);
   useEffect(() => {
     const el = ref.current; if (!el) return;
     const obs = new IntersectionObserver(([e]) => {
@@ -344,15 +439,9 @@ function useReveal() {
   return ref;
 }
 
-function Counter({
-  target,
-  duration = 2200,
-}: {
-  target: string;
-  duration?: number;
-}) {
+function Counter({ target, duration = 2200 }) {
   const [val, setVal] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef(null);
   const started = useRef(false);
   const isNeg = target.includes("-");
   const num = parseInt(target.replace(/\D/g,""));
@@ -374,17 +463,7 @@ function Counter({
   return <span ref={ref} className="metric-val">{val > 0 ? "+" : ""}{val}%</span>;
 }
 
-const SH = ({
-  label,
-  title,
-  sub,
-  center = false,
-}: {
-  label: string;
-  title: string;
-  sub: string;
-  center?: boolean;
-}) => {
+const SH = ({ label, title, sub, center = false }) => {
   const ref = useReveal();
   return (
     <div ref={ref} className={`reveal sh-wrap${center ? " center" : ""}`}>
@@ -395,9 +474,111 @@ const SH = ({
   );
 };
 
+// ── Lead Form Modal ──────────────────────────────────────────────
+function LeadModal({ onClose }) {
+  const [form, setForm] = useState({ empresa:"", nome:"", celular:"", email:"", cargo:"" });
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
+  const valid = form.empresa && form.nome && form.celular && form.email && form.cargo;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!valid) return;
+    setLoading(true);
+    // Envia para WhatsApp como mensagem formatada
+    await new Promise(r => setTimeout(r, 900));
+    const msg = encodeURIComponent(
+      `Olá! Tenho interesse na Jack Wolf.\n\n` +
+      `🏢 Empresa: ${form.empresa}\n` +
+      `👤 Nome: ${form.nome}\n` +
+      `📱 Celular: ${form.celular}\n` +
+      `📧 E-mail: ${form.email}\n` +
+      `💼 Cargo: ${form.cargo}`
+    );
+    window.open(`https://wa.me/5511982408744?text=${msg}`, "_blank");
+    setLoading(false);
+    setSubmitted(true);
+  };
+
+  // fecha ao clicar no overlay
+  const handleOverlay = (e) => { if (e.target === e.currentTarget) onClose(); };
+
+  return (
+    <div className="modal-overlay" onClick={handleOverlay}>
+      <div className="modal-box">
+        <button className="modal-close" onClick={onClose}>✕</button>
+
+        {submitted ? (
+          <div className="success-box">
+            <div className="success-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+            <div className="success-title">Recebemos seu contato!</div>
+            <p className="success-sub">
+              Em breve nossa equipe entrará em contato para entender melhor sua operação e apresentar as soluções da Jack Wolf.
+            </p>
+            <button className="form-submit" style={{ marginTop:"0.5rem" }} onClick={onClose}>
+              Fechar
+            </button>
+          </div>
+        ) : (
+          <>
+            <div className="modal-title">Vamos conversar?</div>
+            <p className="modal-sub">Preencha os dados abaixo e entraremos em contato para apresentar como a Jack Wolf pode transformar sua operação.</p>
+
+            <form onSubmit={handleSubmit}>
+              <div className="form-grid">
+                <div className="form-group full">
+                  <label className="form-label">Empresa</label>
+                  <input className="form-input" type="text" placeholder="Nome da empresa"
+                    value={form.empresa} onChange={e => set("empresa", e.target.value)} required />
+                </div>
+                <div className="form-group full">
+                  <label className="form-label">Seu nome</label>
+                  <input className="form-input" type="text" placeholder="Nome completo"
+                    value={form.nome} onChange={e => set("nome", e.target.value)} required />
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Celular</label>
+                  <input className="form-input" type="tel" placeholder="(11) 99999-9999"
+                    value={form.celular} onChange={e => set("celular", e.target.value)} required />
+                </div>
+                <div className="form-group">
+                  <label className="form-label">E-mail</label>
+                  <input className="form-input" type="email" placeholder="seu@email.com"
+                    value={form.email} onChange={e => set("email", e.target.value)} required />
+                </div>
+                <div className="form-group full">
+                  <label className="form-label">Cargo</label>
+                  <select className="form-select" value={form.cargo} onChange={e => set("cargo", e.target.value)} required>
+                    <option value="" disabled>Selecione seu cargo</option>
+                    <option value="Supervisor">Supervisor</option>
+                    <option value="Coordenador">Coordenador</option>
+                    <option value="Gerente">Gerente</option>
+                    <option value="Diretor">Diretor</option>
+                    <option value="Outro">Outro</option>
+                  </select>
+                </div>
+              </div>
+              <button className="form-submit" type="submit" disabled={!valid || loading}>
+                {loading ? "Enviando..." : (<>Quero saber mais <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></>)}
+              </button>
+            </form>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function JackWolfLanding() {
   const [scrolled, setScrolled]   = useState(false);
   const [menuOpen, setMenuOpen]   = useState(false);
+  const [showLead, setShowLead]   = useState(false);
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 40);
@@ -457,9 +638,15 @@ export default function JackWolfLanding() {
     { v:"100% Web", l:"Sem instalação" },
   ];
 
+  useEffect(() => {
+    document.body.style.overflow = showLead ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [showLead]);
+
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styles }} />
+      {showLead && <LeadModal onClose={()=>setShowLead(false)} />}
 
       {/* ── NAV ── */}
       <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
@@ -472,7 +659,7 @@ export default function JackWolfLanding() {
           ))}
         </div>
 
-        <a href={WHATSAPP_DIAG} target="_blank" rel="noreferrer" className="nav-cta">Solicitar Diagnóstico</a>
+        <button onClick={()=>setShowLead(true)} className="nav-cta">Saber mais</button>
 
         {/* Hamburger mobile */}
         <button className="hamburger" onClick={()=>setMenuOpen(o=>!o)} aria-label="Menu">
@@ -485,7 +672,7 @@ export default function JackWolfLanding() {
         {[["Desafios","#challenges"],["Serviços","#services"],["Tecnologia","#tech"],["Resultados","#results"],["Processo","#process"]].map(([l,h])=>(
           <a key={l} href={h} onClick={closeMenu}>{l}</a>
         ))}
-        <a href={WHATSAPP_DIAG} target="_blank" rel="noreferrer" onClick={closeMenu}>Solicitar Diagnóstico →</a>
+        <a href="#" onClick={e=>{e.preventDefault();closeMenu();setShowLead(true);}}>Saber mais →</a>
       </div>
 
       {/* ── HERO ── */}
@@ -518,9 +705,9 @@ export default function JackWolfLanding() {
             </p>
 
             <div className="btn-row" style={{ display:"flex", flexWrap:"wrap", gap:"0.875rem", marginBottom:"2.25rem" }}>
-              <a href={WHATSAPP_DIAG} target="_blank" rel="noreferrer" className="btn-primary">
-                Solicitar Diagnóstico <Icon name="arrowRight" size={16}/>
-              </a>
+              <button onClick={()=>setShowLead(true)} className="btn-primary">
+                Saber mais <Icon name="arrowRight" size={16}/>
+              </button>
               <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn-ghost">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><Icon name="whatsapp"/></svg>
                 Falar no WhatsApp
@@ -636,9 +823,9 @@ export default function JackWolfLanding() {
               ))}
             </div>
             <div>
-              <a href={WHATSAPP_DIAG} target="_blank" rel="noreferrer" className="btn-primary">
-                Solicitar Demonstração <Icon name="arrowRight" size={16}/>
-              </a>
+              <button onClick={()=>setShowLead(true)} className="btn-primary">
+                Saber mais <Icon name="arrowRight" size={16}/>
+              </button>
             </div>
           </div>
 
@@ -695,8 +882,7 @@ export default function JackWolfLanding() {
       {/* ── FUNDADOR ── */}
       <section className="section grid-bg">
         <div className="orb" style={{ width:500,height:500,background:"radial-gradient(circle,rgba(0,178,169,0.09) 0%,transparent 70%)",top:"20%",right:"0" }}/>
-        <SH label="Sobre o Fundador" title="Expertise construída no campo, com foco em resultado." sub=""
-         />
+        <SH label="Sobre o Fundador" title="Expertise construída no campo, com foco em resultado." />
         <div className="founder-flex" style={{ display:"flex", flexWrap:"wrap", gap:"4rem", alignItems:"center" }}>
           <div className="founder-photo">
             <img src="/jackson.png" alt="Jackson Oliveira"/>
@@ -759,9 +945,9 @@ export default function JackWolfLanding() {
             Vamos identificar oportunidades de crescimento e construir uma operação mais eficiente, previsível e orientada por dados.
           </p>
           <div className="btn-row" style={{ display:"flex", flexWrap:"wrap", gap:"1rem", justifyContent:"center", marginBottom:"2rem" }}>
-            <a href={WHATSAPP_DIAG} target="_blank" rel="noreferrer" className="btn-primary" style={{ fontSize:"1rem", padding:"1rem 2.25rem" }}>
-              Agendar Diagnóstico <Icon name="arrowRight" size={16}/>
-            </a>
+            <button onClick={()=>setShowLead(true)} className="btn-primary" style={{ fontSize:"1rem", padding:"1rem 2.25rem" }}>
+              Saber mais <Icon name="arrowRight" size={16}/>
+            </button>
             <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn-ghost" style={{ fontSize:"1rem", padding:"1rem 2.25rem" }}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><Icon name="whatsapp"/></svg>
               Falar no WhatsApp
