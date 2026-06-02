@@ -488,12 +488,17 @@ function LeadModal({ onClose }) {
     if (!valid) return;
     setLoading(true);
     try {
-      // Salva no Google Sheets
-      await fetch(SHEETS_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+      // GET com parâmetros na URL — funciona com Google Apps Script
+      const params = new URLSearchParams({
+        empresa: form.empresa,
+        nome:    form.nome,
+        celular: form.celular,
+        email:   form.email,
+        cargo:   form.cargo,
+      });
+      await fetch(`${SHEETS_URL}?${params.toString()}`, {
+        method: "GET",
+        mode:   "no-cors",
       });
     } catch (err) {
       console.error("Sheets error:", err);
