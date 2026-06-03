@@ -617,6 +617,7 @@ export default function JackWolfLanding() {
   ];
 
   const services = [
+    { icon:"monitor",    title:"Plataforma SaaS Própria", desc:"Tecnologia proprietária para gestão de sell-in, sell-out, cobertura e performance de distribuidores em tempo real.", saas:true },
     { icon:"target",     title:"Trade Marketing",         desc:"Estratégias de execução, visibilidade e sell-out para o ponto de venda." },
     { icon:"trendingUp", title:"Go-To-Market",            desc:"Planejamento de entrada em mercado, canais, precificação e força de vendas." },
     { icon:"settings",   title:"Estruturação Comercial",  desc:"Processos, rotinas e ferramentas para uma operação eficiente e escalável." },
@@ -624,7 +625,6 @@ export default function JackWolfLanding() {
     { icon:"barChart",   title:"Performance Comercial",   desc:"Diagnóstico, plano de ação e acompanhamento de indicadores de vendas." },
     { icon:"users",      title:"Treinamento Comercial",   desc:"Capacitação de equipes de vendas, distribuidores e promotores." },
     { icon:"award",      title:"Gestão de Indicadores",   desc:"KPIs, metas, dashboards e rituais de análise para gestão por dados." },
-    { icon:"monitor",    title:"Plataforma SaaS Própria", desc:"Tecnologia proprietária para gestão de sell-in, sell-out, cobertura e performance de distribuidores em tempo real.", saas:true },
   ];
 
   const differentials = [
@@ -665,8 +665,10 @@ export default function JackWolfLanding() {
 
       {/* ── NAV ── */}
       <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
-        <img src="/JACK_WOLF.png" alt="Jack Wolf"
-          style={{ height:92, width:"auto", objectFit:"contain", display:"block" }} />
+        <a href="#" onClick={e=>{e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});}}>
+          <img src="/JACK_WOLF.png" alt="Jack Wolf"
+            style={{ height:92, width:"auto", objectFit:"contain", display:"block" }} />
+        </a>
 
         <div className="nav-links">
           {[["Desafios","#challenges"],["Serviços","#services"],["Tecnologia","#tech"],["Resultados","#results"],["Processo","#process"]].map(([l,h])=>(
