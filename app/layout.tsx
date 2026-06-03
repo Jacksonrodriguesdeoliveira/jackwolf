@@ -15,8 +15,23 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Jack Wolf | Plataforma SaaS de Trade Marketing e Inteligência Comercial",
+
   description:
-    "Plataforma SaaS para Trade Marketing, gestão de distribuidores, execução de campo e inteligência comercial.",
+    "Plataforma SaaS para Trade Marketing, gestão de distribuidores, execução de campo, inteligência comercial e aumento de sell-out.",
+
+  keywords: [
+    "trade marketing",
+    "software trade marketing",
+    "inteligência comercial",
+    "gestão de distribuidores",
+    "sell out",
+    "go to market",
+    "execução no pdv",
+    "equipe de campo",
+    "força de vendas",
+    "plataforma comercial",
+  ],
+
   verification: {
     google: "mJW6rYspyvc17dUkzi797hvLhgMJYkvXoOEzfmJ_JB8",
   },
