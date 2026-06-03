@@ -671,7 +671,7 @@ export default function JackWolfLanding() {
         </a>
 
         <div className="nav-links">
-          {[["Desafios","#challenges"],["Serviços","#services"],["Tecnologia","#tech"],["Resultados","#results"],["Processo","#process"]].map(([l,h])=>(
+          {[["Sobre","#about"],["Desafios","#challenges"],["Serviços","#services"],["Tecnologia","#tech"],["Resultados","#results"],["Processo","#process"]].map(([l,h])=>(
             <a key={l} href={h}>{l}</a>
           ))}
         </div>
@@ -686,7 +686,7 @@ export default function JackWolfLanding() {
 
       {/* ── MOBILE MENU ── */}
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-        {[["Desafios","#challenges"],["Serviços","#services"],["Tecnologia","#tech"],["Resultados","#results"],["Processo","#process"]].map(([l,h])=>(
+        {[["Sobre","#about"],["Desafios","#challenges"],["Serviços","#services"],["Tecnologia","#tech"],["Resultados","#results"],["Processo","#process"]].map(([l,h])=>(
           <a key={l} href={h} onClick={closeMenu}>{l}</a>
         ))}
         <a href="#" onClick={e=>{e.preventDefault();closeMenu();setShowLead(true);}}>Saber mais →</a>
@@ -875,6 +875,83 @@ export default function JackWolfLanding() {
               <p style={{ fontSize:"0.875rem", color:"var(--muted)", marginTop:"0.875rem", lineHeight:1.55 }}>{m.label}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ── SOBRE NÓS ── */}
+      <section id="about" className="section grid-bg">
+        <div className="orb" style={{ width:500,height:500,background:"radial-gradient(circle,rgba(0,178,169,0.1) 0%,transparent 70%)",top:"-10%",right:"-8%" }}/>
+        <div className="orb" style={{ width:300,height:300,background:"radial-gradient(circle,rgba(0,178,169,0.06) 0%,transparent 70%)",bottom:"-5%",left:"10%" }}/>
+
+        <SH label="Nossa História" title="Nascemos para transformar a forma como a indústria cresce." />
+
+        <div style={{ display:"flex", flexWrap:"wrap", gap:"4rem", alignItems:"flex-start" }}>
+
+          {/* Texto principal */}
+          <div style={{ flex:"1 1 480px", display:"flex", flexDirection:"column", gap:"1.5rem" }}>
+            <p style={{ fontSize:"1.0625rem", color:"var(--muted)", lineHeight:1.85 }}>
+              A Jack Wolf nasceu de uma convicção simples:{" "}
+              <strong style={{ color:"var(--text)" }}>indústrias e distribuidores perdem dinheiro todos os dias por falta de visibilidade, processos e inteligência comercial.</strong>
+            </p>
+            <p style={{ fontSize:"1.0625rem", color:"var(--muted)", lineHeight:1.85 }}>
+              Após mais de 12 anos operando no campo — estruturando operações, liderando equipes comerciais e
+              construindo estratégias de Go-To-Market para grandes indústrias — ficou claro que o mercado precisava
+              de algo diferente.
+            </p>
+            <p style={{ fontSize:"1.0625rem", color:"var(--muted)", lineHeight:1.85 }}>
+              Não apenas mais uma consultoria. Mas um{" "}
+              <strong style={{ color:"var(--text)" }}>parceiro estratégico que combina experiência real com tecnologia proprietária</strong>{" "}
+              para gerar crescimento previsível e escalável.
+            </p>
+
+            {/* Missão */}
+            <div style={{ background:"var(--card)", border:"1px solid var(--border-t)", borderRadius:14, padding:"1.75rem", position:"relative", overflow:"hidden", marginTop:"0.5rem" }}>
+              <div style={{ position:"absolute", top:0, left:0, right:0, height:2, background:"linear-gradient(90deg,var(--teal),transparent)" }}/>
+              <p style={{ fontFamily:"Space Grotesk", fontWeight:700, fontSize:"0.75rem", letterSpacing:"0.15em", textTransform:"uppercase", color:"var(--teal)", marginBottom:"0.875rem" }}>
+                Nossa Missão
+              </p>
+              <p style={{ fontSize:"1.0625rem", color:"var(--text)", lineHeight:1.8, fontStyle:"italic" }}>
+                "Conectar indústria, distribuidores e equipes de campo com inteligência de dados, execução estruturada
+                e tecnologia — para que cada decisão comercial seja mais rápida, precisa e orientada por resultado."
+              </p>
+            </div>
+          </div>
+
+          {/* Cards Por que existimos */}
+          <div style={{ flex:"1 1 320px", display:"flex", flexDirection:"column", gap:"1rem" }}>
+            <p style={{ fontFamily:"Space Grotesk", fontWeight:700, fontSize:"0.75rem", letterSpacing:"0.15em", textTransform:"uppercase", color:"var(--teal)", marginBottom:"0.25rem" }}>
+              Por que existimos
+            </p>
+
+            {[
+              {
+                icon:"cpu",
+                title:"Para a Indústria",
+                desc:"Visibilidade total da cadeia comercial, do sell-in ao sell-out, em tempo real — com dados que geram decisão.",
+              },
+              {
+                icon:"trendingUp",
+                title:"Para os Distribuidores",
+                desc:"Processos estruturados, metas claras e ferramentas para escalar com eficiência e previsibilidade.",
+              },
+              {
+                icon:"barChart",
+                title:"Para os Gestores",
+                desc:"Dashboards, KPIs e rituais de análise que transformam dados em vantagem competitiva.",
+              },
+            ].map(item=>(
+              <div key={item.title} className="card-soph" style={{ display:"flex", gap:"1rem", alignItems:"flex-start" }}>
+                <div className="icon-box" style={{ marginBottom:0, marginTop:2, flexShrink:0 }}>
+                  <Icon name={item.icon} size={18}/>
+                </div>
+                <div>
+                  <h3 style={{ fontFamily:"Space Grotesk", fontWeight:700, fontSize:"1.0625rem", color:"var(--text)", marginBottom:"0.375rem" }}>{item.title}</h3>
+                  <p style={{ fontSize:"0.9375rem", color:"var(--muted)", lineHeight:1.65 }}>{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
         </div>
       </section>
 
