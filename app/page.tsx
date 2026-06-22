@@ -232,6 +232,103 @@ const styles = `
   .section-alt{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
   .section-hl{background:linear-gradient(135deg,rgba(0,178,169,0.05),transparent);border-top:1px solid rgba(0,178,169,0.12);border-bottom:1px solid rgba(0,178,169,0.12);}
 
+  /* ══ LIGHT SECTION (escopo de variáveis) ══ */
+  .section-light{
+    background:#F7F9FC;
+    border-top:1px solid rgba(15,23,42,0.06);
+    border-bottom:1px solid rgba(15,23,42,0.06);
+    --text:#0F172A;
+    --muted:#64748B;
+    --card:#FFFFFF;
+    --card2:#F1F5F9;
+    --border:rgba(15,23,42,0.08);
+    --border-t:rgba(0,178,169,0.35);
+  }
+  .section-light .grid-bg{
+    background-image:
+      linear-gradient(rgba(0,178,169,0.05) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(0,178,169,0.05) 1px,transparent 1px);
+  }
+
+  /* Platform showcase cards */
+  .platform-card{
+    background:var(--card);border:1px solid var(--border);border-radius:14px;
+    overflow:hidden;transition:all 0.3s;
+  }
+  .platform-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(15,23,42,0.1);border-color:var(--border-t);}
+  .platform-thumb{height:160px;background:var(--card2);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;cursor:zoom-in;}
+  .platform-thumb img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform 0.4s;}
+  .platform-card:hover .platform-thumb img{transform:scale(1.04);}
+  .platform-thumb-zoom{
+    position:absolute;top:10px;right:10px;
+    width:30px;height:30px;border-radius:8px;
+    background:rgba(11,15,20,0.55);backdrop-filter:blur(4px);
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;opacity:0;transition:opacity 0.25s;
+  }
+  .platform-card:hover .platform-thumb-zoom{opacity:1;}
+
+  /* ══ LIGHTBOX ══ */
+  .lightbox-overlay{
+    position:fixed;inset:0;z-index:998;
+    background:rgba(5,7,10,0.92);backdrop-filter:blur(6px);
+    display:flex;align-items:center;justify-content:center;
+    padding:3rem 1.5rem;animation:fadeIn 0.25s ease;
+  }
+  .lightbox-box{
+    max-width:1100px;width:100%;max-height:88vh;
+    display:flex;flex-direction:column;gap:1rem;
+    animation:modalIn 0.3s cubic-bezier(0.23,1,0.32,1) forwards;
+  }
+  .lightbox-img-wrap{
+    border-radius:14px;overflow:hidden;border:1px solid rgba(0,178,169,0.35);
+    box-shadow:0 30px 90px rgba(0,0,0,0.6);
+    max-height:78vh;display:flex;align-items:center;justify-content:center;background:#fff;
+  }
+  .lightbox-img-wrap img{width:100%;height:100%;object-fit:contain;display:block;max-height:78vh;}
+  .lightbox-footer{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+  .lightbox-title{display:flex;align-items:center;gap:8px;color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;}
+  .lightbox-close{
+    width:38px;height:38px;border-radius:9px;flex-shrink:0;
+    background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transition:all 0.2s;font-size:1.1rem;
+  }
+  .lightbox-close:hover{background:rgba(255,255,255,0.16);}
+  .lightbox-nav{display:flex;gap:0.6rem;}
+  .lightbox-nav-btn{
+    width:38px;height:38px;border-radius:9px;
+    background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transition:all 0.2s;
+  }
+  .lightbox-nav-btn:hover{background:var(--teal);border-color:var(--teal);color:#0B0F14;}
+  @media(max-width:560px){
+    .lightbox-overlay{padding:1.5rem 1rem;}
+  }
+  .platform-info{padding:1.1rem 1.25rem 1.35rem;}
+  .platform-info h4{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.95rem;color:var(--text);margin-bottom:0.4rem;display:flex;align-items:center;gap:7px;}
+  .platform-info p{font-size:0.8125rem;color:var(--muted);line-height:1.6;}
+
+  /* ══ CAROUSEL ══ */
+  .carousel-wrap{position:relative;}
+  .carousel-grid{display:grid;gap:1.125rem;margin-bottom:1.75rem;}
+  .carousel-controls{display:flex;align-items:center;justify-content:center;gap:1.25rem;}
+  .carousel-arrow{
+    width:42px;height:42px;border-radius:50%;flex-shrink:0;
+    background:var(--card);border:1px solid var(--border-t);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--teal);cursor:pointer;transition:all 0.2s;
+  }
+  .carousel-arrow:hover:not(:disabled){background:var(--teal);color:#0B0F14;transform:scale(1.06);}
+  .carousel-arrow:disabled{opacity:0.3;cursor:not-allowed;}
+  .carousel-dots{display:flex;align-items:center;gap:8px;}
+  .carousel-dot{width:8px;height:8px;border-radius:50%;background:var(--border-t);border:none;cursor:pointer;transition:all 0.2s;padding:0;}
+  .carousel-dot.active{background:var(--teal);width:26px;border-radius:4px;}
+  @media(max-width:560px){
+    .carousel-controls{gap:0.875rem;}
+  }
+
   .founder-photo{
     width:300px;height:300px;border-radius:50%;
     overflow:hidden;border:3px solid var(--border-t);
@@ -392,7 +489,7 @@ const styles = `
   }
 `;
 
-const Icon = ({ name, size = 20 }) => {
+const Icon = ({ name, size = 20, color = "currentColor" }) => {
   const icons = {
     store:      <><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></>,
     package:    <><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27,6.96 12,12.01 20.73,6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></>,
@@ -416,11 +513,12 @@ const Icon = ({ name, size = 20 }) => {
     layers:     <><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></>,
     menu:       <><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></>,
     x:          <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></>,
+    maximize:   <><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></>,
     whatsapp:   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>,
   };
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      stroke={color} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
       {icons[name]}
     </svg>
   );
@@ -473,6 +571,122 @@ const SH = ({ label, title, sub = undefined, center = false }: { label: string; 
     </div>
   );
 };
+
+// ── Carrossel reutilizável (paginado) ───────────────────────────────
+function Carousel({ items, cardType = "platform" }: { items: any[]; cardType?: "platform" | "differential" }) {
+  const [perView, setPerView] = useState(4);
+  const [page, setPage] = useState(0);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    const calc = () => {
+      const w = window.innerWidth;
+      if (w < 560) setPerView(1);
+      else if (w < 900) setPerView(2);
+      else if (w < 1240) setPerView(3);
+      else setPerView(4);
+    };
+    calc();
+    window.addEventListener("resize", calc);
+    return () => window.removeEventListener("resize", calc);
+  }, []);
+
+  const totalPages = Math.max(1, Math.ceil(items.length / perView));
+  useEffect(() => { setPage(p => Math.min(p, totalPages - 1)); }, [perView, totalPages]);
+
+  const start = page * perView;
+  const visible = items.slice(start, start + perView);
+  const next = () => setPage(p => Math.min(totalPages - 1, p + 1));
+  const prev = () => setPage(p => Math.max(0, p - 1));
+
+  // Lightbox: bloqueia scroll + navegação por teclado
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxIndex(null);
+      if (e.key === "ArrowRight") setLightboxIndex(i => i === null ? i : Math.min(items.length - 1, i + 1));
+      if (e.key === "ArrowLeft") setLightboxIndex(i => i === null ? i : Math.max(0, i - 1));
+    };
+    window.addEventListener("keydown", onKey);
+    return () => { document.body.style.overflow = ""; window.removeEventListener("keydown", onKey); };
+  }, [lightboxIndex, items.length]);
+
+  return (
+    <div className="carousel-wrap">
+      <div className="carousel-grid" style={{ gridTemplateColumns:`repeat(${perView},1fr)` }}>
+        {visible.map((item, i) => {
+          const gi = start + i;
+          return cardType === "platform" ? (
+            <div key={item.title} className="platform-card">
+              <div className="platform-thumb" onClick={()=>setLightboxIndex(gi)}>
+                <img src={item.img} alt={item.title}/>
+                <span className="platform-thumb-zoom"><Icon name="maximize" size={14}/></span>
+              </div>
+              <div className="platform-info">
+                <h4><Icon name={item.icon} size={14} color="var(--teal)"/> {item.title}</h4>
+                <p>{item.desc}</p>
+              </div>
+            </div>
+          ) : (
+            <div key={item.title} className="card-soph" style={{ display:"flex", gap:"1.125rem", alignItems:"flex-start" }}>
+              <span className="card-num" style={{ top:"auto", bottom:"1rem", right:"1rem", fontSize:"1.5rem" }}>{String(gi+1).padStart(2,"0")}</span>
+              <div className="icon-box" style={{ marginBottom:0, marginTop:2, flexShrink:0 }}><Icon name={item.icon} size={18}/></div>
+              <div>
+                <h3 style={{ fontFamily:"Space Grotesk", fontWeight:700, fontSize:"1.0625rem", color:"var(--text)", marginBottom:"0.375rem" }}>{item.title}</h3>
+                <p style={{ fontSize:"0.9375rem", color:"var(--muted)", lineHeight:1.65 }}>{item.desc}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {totalPages > 1 && (
+        <div className="carousel-controls">
+          <button className="carousel-arrow" onClick={prev} disabled={page===0} aria-label="Anterior">
+            <span style={{ display:"flex", transform:"scaleX(-1)" }}><Icon name="arrowRight" size={18}/></span>
+          </button>
+          <div className="carousel-dots">
+            {Array.from({ length: totalPages }).map((_,i)=>(
+              <button key={i} className={`carousel-dot${i===page ? " active" : ""}`} onClick={()=>setPage(i)} aria-label={`Página ${i+1}`}/>
+            ))}
+          </div>
+          <button className="carousel-arrow" onClick={next} disabled={page===totalPages-1} aria-label="Próximo">
+            <Icon name="arrowRight" size={18}/>
+          </button>
+        </div>
+      )}
+
+      {/* ── LIGHTBOX ── */}
+      {cardType === "platform" && lightboxIndex !== null && (
+        <div className="lightbox-overlay" onClick={(e)=>{ if (e.target === e.currentTarget) setLightboxIndex(null); }}>
+          <div className="lightbox-box">
+            <div className="lightbox-img-wrap" onClick={()=>setLightboxIndex(null)} style={{ cursor:"zoom-out" }}>
+              <img src={items[lightboxIndex].img} alt={items[lightboxIndex].title}/>
+            </div>
+            <div className="lightbox-footer">
+              <div className="lightbox-title">
+                <Icon name={items[lightboxIndex].icon} size={16} color="#00B2A9"/>
+                {items[lightboxIndex].title}
+              </div>
+              <div style={{ display:"flex", gap:"0.75rem", alignItems:"center" }}>
+                <div className="lightbox-nav">
+                  <button className="lightbox-nav-btn" onClick={()=>setLightboxIndex(i => i === null ? i : Math.max(0, i-1))} disabled={lightboxIndex===0} aria-label="Anterior">
+                    <span style={{ display:"flex", transform:"scaleX(-1)" }}><Icon name="arrowRight" size={16}/></span>
+                  </button>
+                  <button className="lightbox-nav-btn" onClick={()=>setLightboxIndex(i => i === null ? i : Math.min(items.length-1, i+1))} disabled={lightboxIndex===items.length-1} aria-label="Próximo">
+                    <Icon name="arrowRight" size={16}/>
+                  </button>
+                </div>
+                <button className="lightbox-close" onClick={()=>setLightboxIndex(null)} aria-label="Fechar">✕</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 // ── Lead Form Modal ──────────────────────────────────────────────
 function LeadModal({ onClose }) {
@@ -605,7 +819,7 @@ export default function JackWolfLanding() {
   const closeMenu = () => setMenuOpen(false);
 
   const r1=useReveal(),r2=useReveal(),r3=useReveal(),
-        r4=useReveal(),r5=useReveal(),r6=useReveal(),r7=useReveal();
+        r4=useReveal(),r4b=useReveal(),r5=useReveal(),r6=useReveal();
 
   const challenges = [
     { icon:"store",    title:"Baixa Execução no PDV",                    desc:"Ruptura, má exposição e falta de padrão comprometem a conversão no ponto de venda." },
@@ -637,20 +851,23 @@ export default function JackWolfLanding() {
     { icon:"globe",      title:"Visão Estratégica e Operacional", desc:"Do diagnóstico ao PDV — cobertura completa da cadeia comercial." },
   ];
 
-  const steps = [
-    { n:"01", title:"Diagnóstico",    desc:"Mapeamos gaps, oportunidades e o potencial real da sua operação." },
-    { n:"02", title:"Estruturação",   desc:"Desenhamos o modelo ideal de processos, indicadores e canais." },
-    { n:"03", title:"Implementação",  desc:"Implantamos com suporte ativo, ferramentas e treinamento." },
-    { n:"04", title:"Acompanhamento", desc:"Monitoramos resultados e ajustamos com base em dados reais." },
-    { n:"05", title:"Crescimento",    desc:"Escalamos o que funciona e construímos vantagem competitiva." },
-  ];
-
   const hubFeatures = ["Sell-in / Sell-out","Estoque em tempo real","Cobertura de PDVs","Positivação","Ranking de Distribuidores","Dashboards Executivos"];
   const hubStats    = [
     { v:"Tempo Real", l:"Dados atualizados" },
     { v:"Multi-canal", l:"Todos os distribuidores" },
     { v:"IA Insights", l:"Análises automáticas" },
     { v:"100% Web", l:"Sem instalação" },
+  ];
+
+  const platformShowcase = [
+    { title:"Dashboard",            icon:"monitor",   desc:"Visão geral dos principais indicadores da sua operação comercial.", img:"/platform_dashboard.png" },
+    { title:"GTM Go-To-Market",     icon:"globe",     desc:"Distribuição, cobertura, municípios e potencial por região.", img:"/platform_gtm.png" },
+    { title:"Performance Comercial",icon:"barChart",  desc:"Sell-in, sell-out, ROB, crescimento vs LY e cobertura.", img:"/platform_performance.png" },
+    { title:"Gestão de Estoque",    icon:"package",   desc:"Cobertura, ruptura, excesso e heatmap de aging por SKU.", img:"/platform_estoque.png" },
+    { title:"Copilot Comercial IA", icon:"cpu",        desc:"Insights automáticos, alertas e recomendações geradas por IA.", img:"/platform_ia.png" },
+    { title:"Analytics",            icon:"layers",     desc:"Tabela dinâmica com dimensões, métricas e filtros avançados.", img:"/platform_analytics.png" },
+    { title:"Distribuidores",       icon:"users",      desc:"Cadastro, score, regiões, canais e status de cada distribuidor.", img:"/platform_distribuidores.png" },
+    { title:"Metas & OKRs",         icon:"target",     desc:"Metas mensais por distribuidor, conectadas à performance real.", img:"/platform_metas.png" },
   ];
 
   useEffect(() => {
@@ -671,7 +888,7 @@ export default function JackWolfLanding() {
         </a>
 
         <div className="nav-links">
-          {[["Sobre","#about"],["Desafios","#challenges"],["Serviços","#services"],["Tecnologia","#tech"],["Resultados","#results"],["Processo","#process"]].map(([l,h])=>(
+          {[["Sobre","#about"],["Desafios","#challenges"],["Serviços","#services"],["Tecnologia","#tech"],["Resultados","#results"]].map(([l,h])=>(
             <a key={l} href={h}>{l}</a>
           ))}
         </div>
@@ -686,7 +903,7 @@ export default function JackWolfLanding() {
 
       {/* ── MOBILE MENU ── */}
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-        {[["Sobre","#about"],["Desafios","#challenges"],["Serviços","#services"],["Tecnologia","#tech"],["Resultados","#results"],["Processo","#process"]].map(([l,h])=>(
+        {[["Sobre","#about"],["Desafios","#challenges"],["Serviços","#services"],["Tecnologia","#tech"],["Resultados","#results"]].map(([l,h])=>(
           <a key={l} href={h} onClick={closeMenu}>{l}</a>
         ))}
         <a href="#" onClick={e=>{e.preventDefault();closeMenu();setShowLead(true);}}>Saber mais →</a>
@@ -742,8 +959,8 @@ export default function JackWolfLanding() {
           </div>
 
           {/* Dashboard — alinhado ao topo, leve padding-top para ficar na linha */}
-          <div className="hero-img" style={{ flex:"1 1 380px", display:"flex", justifyContent:"center", zIndex:1, paddingTop:"0.5rem", animation:"fadeIn 1s ease 0.5s forwards", opacity:0 }}>
-            <div className="animate-float" style={{ width:"100%", maxWidth:460 }}>
+          <div className="hero-img" style={{ flex:"1.3 1 460px", display:"flex", justifyContent:"center", zIndex:1, paddingTop:"0.5rem", animation:"fadeIn 1s ease 0.5s forwards", opacity:0 }}>
+            <div className="animate-float" style={{ width:"100%", maxWidth:620 }}>
               <div className="mockup" style={{ boxShadow:"0 30px 80px rgba(0,0,0,0.5),0 0 50px rgba(0,178,169,0.1)" }}>
                 <div className="mockup-bar">
                   <span className="dot" style={{background:"#FF5F57"}}/><span className="dot" style={{background:"#FFBD2E"}}/><span className="dot" style={{background:"#28C840"}}/>
@@ -796,8 +1013,8 @@ export default function JackWolfLanding() {
       </section>
 
       {/* ── TECNOLOGIA ── */}
-      <section id="tech" className="section section-hl">
-        <div className="orb" style={{ width:600,height:600,background:"radial-gradient(circle,rgba(0,178,169,0.1) 0%,transparent 70%)",top:"10%",left:"-15%" }}/>
+      <section id="tech" className="section section-light">
+        <div className="orb" style={{ width:600,height:600,background:"radial-gradient(circle,rgba(0,178,169,0.14) 0%,transparent 70%)",top:"10%",left:"-15%" }}/>
         <SH label="Tecnologia & Inteligência Comercial" title="Tecnologia que converte dados em vantagem competitiva." center
           sub="Além da consultoria estratégica, temos uma plataforma que conecta indústria e distribuidores." />
 
@@ -855,6 +1072,17 @@ export default function JackWolfLanding() {
               <img src="/dashboard.png" alt="Data Hub" style={{ width:"100%", display:"block" }}/>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── PLATAFORMA EM AÇÃO ── */}
+      <section className="section section-light grid-bg">
+        <div className="orb" style={{ width:500,height:500,background:"radial-gradient(circle,rgba(0,178,169,0.1) 0%,transparent 70%)",top:"-5%",right:"-8%" }}/>
+        <SH label="Plataforma em Ação" title="Veja como a Jack Wolf funciona na prática." center
+          sub="Conheça as principais telas da plataforma e como elas geram visibilidade real para sua operação." />
+
+        <div ref={r4b} className="reveal">
+          <Carousel items={platformShowcase} cardType="platform" />
         </div>
       </section>
 
@@ -959,17 +1187,8 @@ export default function JackWolfLanding() {
       <section className="section section-alt">
         <SH label="Nossos Diferenciais" title="Por que a Jack Wolf entrega resultados consistentes?"
           sub="Uma combinação única de experiência, metodologia e tecnologia proprietária." />
-        <div ref={r6} className="reveal" style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))", gap:"1.125rem" }}>
-          {differentials.map((d,i)=>(
-            <div key={d.title} className="card-soph" style={{ display:"flex", gap:"1.125rem", alignItems:"flex-start" }}>
-              <span className="card-num" style={{ top:"auto", bottom:"1rem", right:"1rem", fontSize:"1.5rem" }}>{String(i+1).padStart(2,"0")}</span>
-              <div className="icon-box" style={{ marginBottom:0, marginTop:2, flexShrink:0 }}><Icon name={d.icon} size={18}/></div>
-              <div>
-                <h3 style={{ fontFamily:"Space Grotesk", fontWeight:700, fontSize:"1.0625rem", color:"var(--text)", marginBottom:"0.375rem" }}>{d.title}</h3>
-                <p style={{ fontSize:"0.9375rem", color:"var(--muted)", lineHeight:1.65 }}>{d.desc}</p>
-              </div>
-            </div>
-          ))}
+        <div ref={r6} className="reveal">
+          <Carousel items={differentials} cardType="differential" />
         </div>
       </section>
 
@@ -1004,23 +1223,6 @@ export default function JackWolfLanding() {
               <Icon name="linkedin" size={16}/> Conectar no LinkedIn
             </a>
           </div>
-        </div>
-      </section>
-
-      {/* ── PROCESSO ── */}
-      <section id="process" className="section section-hl">
-        <SH label="Processo de Trabalho" title="Nossa metodologia de crescimento comercial." center
-          sub="Uma metodologia estruturada para garantir resultados consistentes e escaláveis." />
-        <div ref={r7} className="reveal" style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(170px,1fr))", gap:"1.125rem" }}>
-          {steps.map(s=>(
-            <div key={s.title} className="card-soph" style={{ textAlign:"center", padding:"2.25rem 1.25rem" }}>
-              <div style={{ width:52,height:52,borderRadius:"50%",background:"var(--teal-dim)",border:"2px solid var(--border-t)",display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 1.25rem",fontFamily:"Space Grotesk",fontWeight:800,fontSize:"0.875rem",color:"var(--teal)" }}>
-                {s.n}
-              </div>
-              <h3 style={{ fontFamily:"Space Grotesk", fontWeight:700, fontSize:"1.0625rem", color:"var(--text)", marginBottom:"0.5rem" }}>{s.title}</h3>
-              <p style={{ fontSize:"0.9rem", color:"var(--muted)", lineHeight:1.65 }}>{s.desc}</p>
-            </div>
-          ))}
         </div>
       </section>
 
