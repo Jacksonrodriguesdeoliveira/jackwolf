@@ -854,7 +854,7 @@ export default function JackWolfLanding() {
   ];
 
   const differentials = [
-    { icon:"award",      title:"12+ Anos em Trade Marketing",     desc:"Experiência sólida com indústrias de grande porte e canais complexos." },
+    { icon:"award",      title:"15+ Anos em Trade Marketing",     desc:"Experiência sólida com indústrias de grande porte e canais complexos." },
     { icon:"target",     title:"Especialização em GTM",           desc:"Metodologia própria de Go-To-Market para mercados competitivos." },
     { icon:"cpu",        title:"Inteligência Comercial",          desc:"Dados integrados à estratégia — não apenas relatórios, mas decisões." },
     { icon:"layers",     title:"Tecnologia Proprietária",         desc:"Plataformas SaaS desenvolvidas para a realidade do mercado brasileiro." },
@@ -969,7 +969,7 @@ export default function JackWolfLanding() {
             </div>
 
             <div className="hero-pills" style={{ display:"flex", flexWrap:"wrap", gap:"0.75rem" }}>
-              {[["12+ Anos","Experiência"],["Expertise em Distribuição","Canal Indireto"],["SaaS Própria","Plataforma JW"]].map(([v,l])=>(
+              {[["15+ Anos","Experiência"],["Expertise em Distribuição","Canal Indireto"],["SaaS Própria","Plataforma JW"]].map(([v,l])=>(
                 <div key={v} style={{ display:"flex", alignItems:"center", gap:"0.5rem", padding:"0.5rem 1rem", background:"var(--card)", border:"1px solid var(--border)", borderRadius:100 }}>
                   <span style={{ fontFamily:"Space Grotesk", fontWeight:700, fontSize:"0.8125rem", color:"var(--teal)" }}>{v}</span>
                   <span style={{ fontSize:"0.75rem", color:"var(--muted)" }}>{l}</span>
@@ -1142,7 +1142,7 @@ export default function JackWolfLanding() {
               <strong style={{ color:"var(--text)" }}>indústrias e distribuidores perdem dinheiro todos os dias por falta de visibilidade, processos e inteligência comercial.</strong>
             </p>
             <p style={{ fontSize:"1.0625rem", color:"var(--muted)", lineHeight:1.85 }}>
-              Após mais de 12 anos operando no campo — estruturando operações, liderando equipes comerciais e
+              Após mais de 15 anos operando no campo — estruturando operações, liderando equipes comerciais e
               construindo estratégias de Go-To-Market para grandes indústrias — ficou claro que o mercado precisava
               de algo diferente.
             </p>
@@ -1228,7 +1228,7 @@ export default function JackWolfLanding() {
               Especialista em Trade Marketing, GTM & Inteligência Comercial
             </p>
             <p style={{ color:"var(--muted)", lineHeight:1.85, fontSize:"1.0625rem", marginBottom:"1.75rem", maxWidth:500 }}>
-              Com mais de 12 anos de experiência em Trade Marketing, Go-To-Market e Inteligência Comercial,
+              Com mais de 15 anos de experiência em Trade Marketing, Go-To-Market e Inteligência Comercial,
               Jackson construiu a Jack Wolf para transformar operações comerciais complexas em máquinas de
               crescimento previsível, orientadas por dados e tecnologia proprietária.
             </p>
